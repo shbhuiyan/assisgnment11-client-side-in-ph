@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
 import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
-import Add from "../Pages/Add";
+import Add from "../Pages/ForMe";
 import Signin from "../Pages/Auth/Signin";
 import Register from "../Pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
@@ -10,6 +10,7 @@ import QueryDetails from "../Pages/QueryDetails";
 import UpdateQueries from "../Pages/UpdateQueries";
 import MyQueries from "../Pages/MyQueries";
 import Queries from "../Pages/Queries";
+import Recommendations from "../Pages/Recommendations";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +39,11 @@ const router = createBrowserRouter([
           fetch("https://sports-hub-server-side.vercel.app/products"),
       },
       {
-        path: "/equipments",
+        path: "/queries",
         element: <Queries />,
       },
       {
-        path: "/add",
+        path: "/forMe",
         element: (
           <PrivateRoute>
             <Add />
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyQueries />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/recommendations",
+        element: (
+          <PrivateRoute>
+            <Recommendations />
           </PrivateRoute>
         ),
       },

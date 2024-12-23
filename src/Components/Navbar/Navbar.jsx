@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Profile from "../Profile/Profile";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import logo from "../../Assets/ask-me.png"
 
 const Navbar = () => {
   const { user, logOut , setDarkTheme , darkTheme} = useContext(AuthContext);
@@ -22,24 +23,39 @@ const Navbar = () => {
 
   const Links = (
     <>
-      <li>
-        <NavLink to={"/"}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/equipments"}>All Equipments</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/add"}>Add Equipment </NavLink>
-      </li>
-      <li>
-        <NavLink to={"/myQueries"}>My List</NavLink>
-      </li>
+      {
+        user?.email ? <>
+          <li>
+            <NavLink to={"/"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/queries"}>Queries</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/forMe"}>For Me </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/myQueries"}>My Queries</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/recommendations"}>My REC</NavLink>
+          </li>
+        </> : 
+        <>
+          <li>
+            <NavLink to={"/"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/queries"}>Queries</NavLink>
+          </li>
+        </>
+      }
     </>
   );
 
   return (
     <div className="flex justify-between items-center py-2 px-4">
-      <div className="">
+      <div className="flex items-center">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
           <svg
@@ -65,13 +81,8 @@ const Navbar = () => {
         </ul>
         
       </div>
-      <Link className="text-2xl md:text-3xl font-bold" to={"/"}>
-          <span className="text-white bg-black py-1 pl-3 pr-1 rounded-l-md">
-            Ask
-          </span>
-          <span className="text-black bg-amber-500 py-1 pr-3 pl-1 rounded-r-md">
-            Me
-          </span>
+      <Link  to={"/"}>
+          <img className="w-12 md:w-16" src={logo} alt="" />
         </Link>
       </div>
 
