@@ -32,13 +32,13 @@ const Navbar = () => {
             <NavLink to={"/queries"}>Queries</NavLink>
           </li>
           <li>
-            <NavLink to={"/forMe"}>For Me </NavLink>
+            <NavLink to={"/forMe"}>Comments For Me </NavLink>
           </li>
           <li>
             <NavLink to={"/myQueries"}>My Queries</NavLink>
           </li>
           <li>
-            <NavLink to={"/recommendations"}>My REC</NavLink>
+            <NavLink to={"/recommendations"}>My Comments</NavLink>
           </li>
         </> : 
         <>
@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content bg-base-300 backdrop-blur-4xl font-bold rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          className="menu menu-sm dropdown-content backdrop-blur-3xl font-bold rounded-box z-10 mt-3 w-52 p-2 shadow"
         >
           {Links}
         </ul>

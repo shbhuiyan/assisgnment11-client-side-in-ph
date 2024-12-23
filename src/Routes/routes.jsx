@@ -11,6 +11,8 @@ import UpdateQueries from "../Pages/UpdateQueries";
 import MyQueries from "../Pages/MyQueries";
 import Queries from "../Pages/Queries";
 import Recommendations from "../Pages/Recommendations";
+import RecentQueries from "../Components/RecentQueries";
+import Details from "../Pages/Details";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <Queries/>,
+            element: <RecentQueries/>,
           },
         ],
       },
@@ -63,6 +65,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyQueries />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <Details />
           </PrivateRoute>
         ),
       },
