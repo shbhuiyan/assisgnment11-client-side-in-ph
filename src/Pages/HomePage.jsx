@@ -7,7 +7,7 @@ const HomePage = () => {
 
 
     return (
-        <div className="space-y-20">
+        <div className="space-y-20 p-4">
             <Banner/>
             <Outlet/>
         </div>

@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer footer-center bg-base-300 text-base-content p-4">
-                <p>Copyright © {new Date().getFullYear()} - All right reserved by Sports Hub</p>
+                <p>Copyright © {new Date().getFullYear()} - All right reserved by SH Bhuiyan</p>
             </div>
         </footer>
     );

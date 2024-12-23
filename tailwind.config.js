@@ -8,9 +8,7 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'hero-1': "url('https://i.postimg.cc/XqNkhHbj/sports-1.webp')",
-      },
+      
     },
   },
   plugins: [daisyui],
