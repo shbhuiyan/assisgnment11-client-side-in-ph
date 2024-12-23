@@ -22,7 +22,7 @@ const RecentQueryCard = ({query}) => {
             <h2 className="card-title">Name : {productName}</h2>
             <p className="text-lg text-red-500 font-medium">{queryTitle}</p>
             <p className="text-lg font-medium">Recommends : {recommendationCount}</p>
-            <p className="text-lg font-medium">Time : {currentDateTime}</p>
+            <p className="text-lg font-medium">Added Time : {currentDateTime}</p>
             <div className="card-actions justify-end">
               <Link to={`/details/${_id}`} className="btn btn-accent">Recommend</Link>
             </div>

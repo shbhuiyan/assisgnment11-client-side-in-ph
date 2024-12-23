@@ -32,13 +32,13 @@ const Navbar = () => {
             <NavLink to={"/queries"}>Queries</NavLink>
           </li>
           <li>
-            <NavLink to={"/forMe"}>Comments For Me </NavLink>
+            <NavLink to={"/forMe"}>Recommendation For Me </NavLink>
           </li>
           <li>
             <NavLink to={"/myQueries"}>My Queries</NavLink>
           </li>
           <li>
-            <NavLink to={"/recommendations"}>My Comments</NavLink>
+            <NavLink className="text-red-600" to={"/recommendations"}>My Recommendation</NavLink>
           </li>
         </> : 
         <>

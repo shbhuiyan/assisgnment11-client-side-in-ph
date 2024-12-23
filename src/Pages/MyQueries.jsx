@@ -14,7 +14,9 @@ const MyQueries = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/user-queries/${user?.email}`)
-    .then(res => setQueries(res.data))
+    .then(res => {
+      setQueries(res.data)
+    })
   },[user?.email])
 
   return (

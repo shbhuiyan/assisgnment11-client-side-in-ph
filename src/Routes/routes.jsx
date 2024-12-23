@@ -10,10 +10,10 @@ import QueryDetails from "../Pages/QueryDetails";
 import UpdateQueries from "../Pages/UpdateQueries";
 import MyQueries from "../Pages/MyQueries";
 import Queries from "../Pages/Queries";
-import Recommendations from "../Pages/Recommendations";
 import RecentQueries from "../Components/RecentQueries";
 import Details from "../Pages/Details";
 import AddQueries from "../Pages/AddQueries";
+import MyRecommend from "../Pages/MyRecommend";
 
 const router = createBrowserRouter([
   {
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         path: "/recommendations",
         element: (
           <PrivateRoute>
-            <Recommendations />
+            <MyRecommend />
           </PrivateRoute>
         ),
       },

@@ -1,10 +1,124 @@
+import moment from "moment/moment";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddQueries = () => {
-    return (
-        <div>
-            add
-        </div>
-    );
-};
 
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handleAddQueries = e => {
+        e.preventDefault()
+
+        const form = new FormData(e.target);
+        const productName = form.get('productName');
+        const productBrand = form.get('productBrand');
+        const productImageUrl = form.get('productImageUrl');
+        const queryTitle = form.get('queryTitle');
+        const reasonDetails = form.get('reasonDetails');
+        const currentDateTime = moment().format('DD-MM-YYYY, h:mm a');
+        const recommendationCount = 0
+        const userEmail = user.email
+        const userName = user.displayName
+        const userProfileImage  = user.photoURL
+
+        const newQueries = {productName , productBrand , productImageUrl , queryTitle , reasonDetails , currentDateTime , recommendationCount , userEmail , userName , userProfileImage}
+        
+        axios.post('http://localhost:5000/queries' , newQueries)
+        .then(res => {
+            console.log(res.data);
+            toast.success("Successfully Added Your Queries" , {position:"top-center"})
+            navigate('/myQueries')
+        })
+
+        e.target.reset()
+    }
+
+
+    return (
+      <div className="max-w-3xl mx-auto p-6 my-20 bg-white shadow-lg rounded-lg">
+        <h2 className="text-4xl text-center font-semibold text-gray-800 mb-10">Add Query</h2>
+        <form onSubmit={handleAddQueries}>
+          {/* Product Name */}
+          <div className="mb-4">
+            <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
+            <input 
+              type="text" 
+              id="productName" 
+              name="productName"
+              required
+              placeholder="Enter product name" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+          </div>
+  
+          {/* Product Brand */}
+          <div className="mb-4">
+            <label htmlFor="productBrand" className="block text-sm font-medium text-gray-700 mb-2">Product Brand</label>
+            <input 
+              type="text" 
+              id="productBrand" 
+              name="productBrand"
+              required
+              placeholder="Enter product brand" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+          </div>
+  
+          {/* Product Image URL */}
+          <div className="mb-4">
+            <label htmlFor="productImageUrl" className="block text-sm font-medium text-gray-700 mb-2">Product Image URL</label>
+            <input 
+              type="text" 
+              id="productImageUrl" 
+              name="productImageUrl"
+              required
+              placeholder="Enter image URL" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+          </div>
+  
+          {/* Query Title */}
+          <div className="mb-4">
+            <label htmlFor="queryTitle" className="block text-sm font-medium text-gray-700 mb-2">Query Title</label>
+            <input 
+              type="text" 
+              id="queryTitle" 
+              name="queryTitle"
+              required
+              placeholder="Enter your query title" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            />
+          </div>
+  
+          {/* Boycotting Reason Details */}
+          <div className="mb-4">
+            <label htmlFor="reasonDetails" className="block text-sm font-medium text-gray-700 mb-2">Boycotting Reason Details</label>
+            <textarea 
+              id="reasonDetails" 
+              name="reasonDetails"
+              rows="4" 
+              required
+              placeholder="Explain your reasons here" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+  
+          {/* Add Query Button */}
+          <div className="text-right">
+            <button 
+              type="submit" 
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Add Query
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  };
+  
 export default AddQueries;
