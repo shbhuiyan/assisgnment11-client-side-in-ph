@@ -13,6 +13,7 @@ import Queries from "../Pages/Queries";
 import Recommendations from "../Pages/Recommendations";
 import RecentQueries from "../Components/RecentQueries";
 import Details from "../Pages/Details";
+import AddQueries from "../Pages/AddQueries";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Recommendations />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add",
+        element: (
+          <PrivateRoute>
+            <AddQueries />
           </PrivateRoute>
         ),
       },
