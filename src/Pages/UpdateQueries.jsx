@@ -1,14 +1,17 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import moment from "moment";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const UpdateQueries = () => {
   
   const singleQueries = useLoaderData();
   const {user} = useContext(AuthContext)
+  const navigate = useNavigate()
 
-const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails} = singleQueries[0];
+const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , _id} = singleQueries[0];
 
 const handleUpdateQueries = e => {
   e.preventDefault()
@@ -27,7 +30,31 @@ const handleUpdateQueries = e => {
   
           const updateQueries = {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , currentDateTime , recommendationCount , userEmail , userName , userProfileImage}
 
-          console.log(updateQueries);
+
+          // sweet alert for updated
+          Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Update",
+            denyButtonText: `Don't Update`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              axios.put(`http://localhost:5000/single-queries/${_id}` , updateQueries)
+              .then(res => {
+                if(res.data.modifiedCount > 0){
+                  Swal.fire("Updated!", "", "success");
+                  navigate('/myQueries')
+                }else if (result.isDenied) {
+                  Swal.fire("Changes are not saved", "", "info");
+                }
+              })
+            }
+          });
+
+          
+          // .then(res => res.data)
 }
 
 
@@ -95,10 +122,9 @@ return (
       <div className="mb-4">
         <label htmlFor="reasonDetails" className="block text-sm font-medium text-gray-700 mb-2">Boycotting Reason Details</label>
         <textarea 
-          disabled = {true}
           defaultValue={boycottingReasonDetails}
           id="reasonDetails" 
-          name="reasonDetails"
+          name="boycottingReasonDetails"
           rows="4" 
           required
           placeholder="Explain your reasons here" 
