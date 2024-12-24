@@ -32,8 +32,8 @@ const Register = () => {
       const user = result.user;
       setUser(user)
       update(name , photo)
-      toast.success("Congrats you create an account" , {position:"top-center"})
-      navigate('/')
+      toast.success("Now Login your account" , {position:"top-center"})
+      navigate('/signIn')
     })
     .catch(err => {
       {

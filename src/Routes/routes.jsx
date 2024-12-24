@@ -60,6 +60,7 @@ const router = createBrowserRouter([
             <UpdateQueries />
           </PrivateRoute>
         ),
+        loader:({params}) => fetch(`http://localhost:5000/single-queries/${params.id}`)
       },
       {
         path: "/myQueries",

@@ -6,11 +6,38 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import MyQueryCard from "../Components/cards/MyQueryCard";
 import NoData from "../Components/NoData";
+import Swal from "sweetalert2";
 
 
 const MyQueries = () => {
   const [queries , setQueries] = useState([])
   const {user} = useContext(AuthContext)
+
+  const handleDeleteQuery = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(result => {
+      if(result.isConfirmed){
+        axios.delete(`http://localhost:5000/queries/delete/${id}`)
+        .then(res => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Queries has been deleted.",
+              icon: "success",
+            });
+            setQueries(queries.filter(deletedQuery => deletedQuery._id !== id))
+          }
+        })
+      }
+    })
+  }
 
   useEffect(() => {
     axios.get(`http://localhost:5000/user-queries/${user?.email}`)
@@ -39,7 +66,7 @@ const MyQueries = () => {
           {
             queries.length ? <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                       {
-                          queries.map(query => <MyQueryCard key={query._id} query={query} />)
+                          queries.map(query => <MyQueryCard key={query._id} handleDeleteQuery={handleDeleteQuery} query={query} />)
                       }
                       </div> 
                       : 
