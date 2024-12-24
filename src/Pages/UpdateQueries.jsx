@@ -64,7 +64,7 @@ return (
     <form onSubmit={handleUpdateQueries}>
       {/* Product Name */}
       <div className="mb-4">
-        <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
+        <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-2">Product Name <span className="text-red-600">*</span></label>
         <input 
           type="text" 
           id="productName" 
@@ -78,7 +78,7 @@ return (
 
       {/* Product Brand */}
       <div className="mb-4">
-        <label htmlFor="productBrand" className="block text-sm font-medium text-gray-700 mb-2">Product Brand</label>
+        <label htmlFor="productBrand" className="block text-sm font-medium text-gray-700 mb-2">Product Brand <span className="text-red-600">*</span></label>
         <input 
           type="text" 
           id="productBrand" 
@@ -92,7 +92,7 @@ return (
 
       {/* Product Image URL */}
       <div className="mb-4">
-        <label htmlFor="productImageUrl" className="block text-sm font-medium text-gray-700 mb-2">Product Image URL</label>
+        <label htmlFor="productImageUrl" className="block text-sm font-medium text-gray-700 mb-2">Product Image URL <span className="text-red-600">*</span></label>
         <input 
           type="text" 
           id="productImageUrl" 
@@ -106,7 +106,7 @@ return (
 
       {/* Query Title */}
       <div className="mb-4">
-        <label htmlFor="queryTitle" className="block text-sm font-medium text-gray-700 mb-2">Query Title</label>
+        <label htmlFor="queryTitle" className="block text-sm font-medium text-gray-700 mb-2">Query Title <span className="text-red-600">*</span></label>
         <input 
           type="text" 
           id="queryTitle" 
@@ -120,7 +120,7 @@ return (
 
       {/* Boycotting Reason Details */}
       <div className="mb-4">
-        <label htmlFor="reasonDetails" className="block text-sm font-medium text-gray-700 mb-2">Boycotting Reason Details</label>
+        <label htmlFor="reasonDetails" className="block text-sm font-medium text-gray-700 mb-2">Boycotting Reason Details <span className="text-red-600">*</span></label>
         <textarea 
           defaultValue={boycottingReasonDetails}
           id="reasonDetails" 
