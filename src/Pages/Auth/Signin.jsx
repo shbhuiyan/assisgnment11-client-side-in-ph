@@ -20,7 +20,7 @@ const Signin = () => {
     .then(result => {
       const user = result.user;
       setUser(user);
-      toast.success(`welcome back Mr.${user?.displayName || "Anonymous"}` , {position:"top-center"});
+      toast.success(`welcome back ${user?.displayName || "Anonymous"}` , {position:"top-center"});
       navigate(location?.state ? location.state : '/');
     })
     .catch(err => {

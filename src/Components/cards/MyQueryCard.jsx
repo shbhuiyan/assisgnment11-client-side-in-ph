@@ -11,8 +11,7 @@ const MyQueryCard = ( {query , handleDeleteQuery} ) => {
 
 
     return (
-        <div data-aos="flip-left" data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000" className="card bg-base-100 border shadow-xl p-4">
+        <div data-aos="fade-up" data-aos-duration="2000" className="card bg-base-100 border shadow-xl p-4">
           <figure>
             <img
                 className="max-h-52"

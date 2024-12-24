@@ -56,7 +56,7 @@ const MyQueries = () => {
             </div>
             <div>
             <Lottie
-              className="max-w-lg"
+              className="md:max-w-md"
               animationData={animationForBanner}
               loop={true}
             />
