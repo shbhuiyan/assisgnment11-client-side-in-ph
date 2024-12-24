@@ -11,7 +11,6 @@ import UpdateQueries from "../Pages/UpdateQueries";
 import MyQueries from "../Pages/MyQueries";
 import Queries from "../Pages/Queries";
 import RecentQueries from "../Components/RecentQueries";
-import Details from "../Pages/Details";
 import AddQueries from "../Pages/AddQueries";
 import MyRecommend from "../Pages/MyRecommend";
 
@@ -30,16 +29,6 @@ const router = createBrowserRouter([
             element: <RecentQueries/>,
           },
         ],
-      },
-      {
-        path: "/details/:id",
-        element: (
-          <PrivateRoute>
-            <QueryDetails />
-          </PrivateRoute>
-        ),
-        loader: () =>
-          fetch("https://sports-hub-server-side.vercel.app/products"),
       },
       {
         path: "/queries",
@@ -74,9 +63,10 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: (
           <PrivateRoute>
-            <Details />
+            <QueryDetails />
           </PrivateRoute>
         ),
+        loader:({params}) => fetch(`http://localhost:5000/single-queries/${params.id}`)
       },
       {
         path: "/recommendations",
