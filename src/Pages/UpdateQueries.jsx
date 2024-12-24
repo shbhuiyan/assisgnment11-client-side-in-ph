@@ -1,17 +1,40 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import moment from "moment";
 
 const UpdateQueries = () => {
   
   const singleQueries = useLoaderData();
-console.log(singleQueries);
+  const {user} = useContext(AuthContext)
 
 const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails} = singleQueries[0];
+
+const handleUpdateQueries = e => {
+  e.preventDefault()
+
+  const form = new FormData(e.target);
+          const productName = form.get('productName');
+          const productBrand = form.get('productBrand');
+          const productImageUrl = form.get('productImageUrl');
+          const queryTitle = form.get('queryTitle');
+          const boycottingReasonDetails = form.get('boycottingReasonDetails');
+          const currentDateTime = moment().format('DD-MM-YYYY, h:mm a');
+          const recommendationCount = 0
+          const userEmail = user.email
+          const userName = user.displayName
+          const userProfileImage  = user.photoURL
+  
+          const updateQueries = {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , currentDateTime , recommendationCount , userEmail , userName , userProfileImage}
+
+          console.log(updateQueries);
+}
 
 
 return (
   <div className="max-w-3xl mx-auto p-6 my-20 bg-white shadow-lg rounded-lg">
     <h2 className="text-4xl text-center font-semibold text-gray-800 mb-10">Update Your Query</h2>
-    <form>
+    <form onSubmit={handleUpdateQueries}>
       {/* Product Name */}
       <div className="mb-4">
         <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
