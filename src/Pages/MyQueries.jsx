@@ -63,6 +63,8 @@ const MyQueries = () => {
             </div>
           </div>
 
+          <div className="">
+          <h1 className="text-4xl text-center font-bold my-10">My Posted Queries</h1>
           {
             queries.length ? <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                       {
@@ -72,6 +74,7 @@ const MyQueries = () => {
                       : 
                       <NoData />
           }
+          </div>
     
     </div>
   );

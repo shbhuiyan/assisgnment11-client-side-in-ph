@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
-AOS.init();
 
 const RecentQueryCard = ({query}) => {
     
@@ -10,8 +7,7 @@ const RecentQueryCard = ({query}) => {
     const {productName , queryTitle , recommendationCount , currentDateTime , productImageUrl , _id} = query
 
     return (
-        <div data-aos="flip-left" data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000" className="card bg-base-100 border shadow-xl p-4">
+        <div className="card bg-base-100 border shadow-xl p-4">
           <figure>
             <img
                 className="max-h-52"

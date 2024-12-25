@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import Swal from "sweetalert2";
 import RecommendationCard from "../Components/cards/RecommendationCard";
+import NoRecommendFound from "../Components/NoRecommendFound";
+
 
 const QueryDetails = () => {
   const [recommendations , setRecommendations] = useState([])
@@ -188,11 +190,16 @@ const QueryDetails = () => {
       {/* Show Recommendations */}
       <section className="my-20">
         <h1 className="text-3xl text-center font-bold my-10">Recommendation For This Product</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {
-            recommendations.map(recommend => <RecommendationCard key={recommend._id} recommend={recommend} /> )
-          }
-        </div>
+        {
+          recommendations.length ? 
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {
+                  recommendations.map(recommend => <RecommendationCard key={recommend._id} recommend={recommend} /> )
+                }
+              </div>
+            :
+              <NoRecommendFound />
+        }
       </section>
 
       {/* All Recommendations */}
