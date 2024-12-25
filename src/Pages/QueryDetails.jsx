@@ -1,11 +1,15 @@
+import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useContext } from "react";
+import moment from "moment";
+import Swal from "sweetalert2";
 
 const QueryDetails = () => {
-
-
+  const { user } = useContext(AuthContext);
   const queryDetails = useLoaderData()
 
-  const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , userEmail , userName , currentDateTime} = queryDetails[0]
+  const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , userEmail , userName , currentDateTime , _id} = queryDetails[0]
 
   const handleAddRecommendation = e => {
     e.preventDefault()
@@ -15,9 +19,27 @@ const QueryDetails = () => {
     const recommendedProductName = form.get('recommendedProductName')
     const recommendedImageUrl = form.get('recommendedImageUrl')
     const recommendationReason = form.get('recommendationReason')
+    const queryId = _id
+    const itemTitle = queryTitle
+    const itemName = productName
+    const creatorEmail = userEmail
+    const creator = userName
+    const currentUserEmail = user?.email
+    const currentUserName = user?.displayName
+    const currentDateTime = moment().format('DD-MM-YYYY, h:mm a');
 
-    const recommendation = {recommendationTitle , recommendedProductName , recommendedImageUrl , recommendationReason};
-    console.log(recommendation);
+    const recommendation = {recommendationTitle , recommendedProductName , recommendedImageUrl , recommendationReason , queryId , itemTitle , itemName , creatorEmail , creator , currentUserEmail , currentUserName , currentDateTime};
+
+    axios.post('http://localhost:5000/recommendations' , recommendation)
+    .then(res => {
+      if(res.data.insertedId){
+                    Swal.fire({
+                      title: "Successfully Added Your Recommendation!",
+                      icon: "success",
+                      // draggable: true
+                    });
+                  }
+    })
 
     e.target.reset();
     // after submitting modal close 

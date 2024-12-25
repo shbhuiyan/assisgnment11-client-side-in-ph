@@ -29,13 +29,14 @@ const AddQueries = () => {
         
         axios.post('http://localhost:5000/queries' , newQueries)
         .then(res => {
-            console.log(res.data);
-            Swal.fire({
-              title: "Successfully Added Your Queries!",
-              icon: "success",
-              draggable: true
-            });
-            navigate('/myQueries')
+            if(res.data.insertedId){
+              Swal.fire({
+                title: "Successfully Added Your Queries!",
+                icon: "success",
+                draggable: true
+              });
+              navigate('/myQueries')
+            }
         })
 
         e.target.reset()
