@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import NoRecommendFound from "../Components/NoRecommendFound";
+import Swal from "sweetalert2";
 
 const MyRecommend = () => {
     const [recommends , setRecommends] = useState([])
@@ -13,6 +14,33 @@ const MyRecommend = () => {
             setRecommends(res.data);
         })
     },[user?.email])
+
+    const handleDeleteRecommends = id => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+          }).then(result => {
+            if(result.isConfirmed){
+              axios.delete(`http://localhost:5000/recommendations/delete/${id}`)
+              .then(res => {
+                if (res.data.deletedCount > 0) {
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your Recommends has been deleted.",
+                    icon: "success",
+                  });
+                  setRecommends(recommends.filter(deletedQuery => deletedQuery._id !== id))
+                }
+              })
+            }
+          })
+    }
 
     return (
         <div className="overflow-x-auto max-w-5xl mx-auto my-10">
@@ -31,7 +59,7 @@ const MyRecommend = () => {
                       </tr>
                     </thead>
                     <tbody>
-                        
+
                       {/* recommendation table row */}
                     {
                         recommends.map(recommend => <tr key={recommend._id}>
@@ -48,7 +76,7 @@ const MyRecommend = () => {
                                  {recommend.currentDateTime}
                             </td>
                             <td>
-                                <button className="btn hover:bg-red-600 font-bold hover:text-white bg-red-400 btn-sm">Delete</button>
+                                <button onClick={()=>handleDeleteRecommends(recommend._id)} className="btn hover:bg-red-600 font-bold hover:text-white bg-red-400 btn-sm">Delete</button>
                             </td>
                          </tr>)
                     }
