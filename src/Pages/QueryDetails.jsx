@@ -18,6 +18,12 @@ const QueryDetails = () => {
 
     const recommendation = {recommendationTitle , recommendedProductName , recommendedImageUrl , recommendationReason};
     console.log(recommendation);
+
+    e.target.reset();
+    // after submitting modal close 
+    const modal = document.getElementById("my_modal_3")
+    modal.close();
+
   }
 
   return (
@@ -29,103 +35,125 @@ const QueryDetails = () => {
         <div className="rounded-lg">
             <img className="w-48 rounded-lg" src={productImageUrl} alt={productName} />
         </div>
-        <div className="space-y-2">
-            <p>
-              <span className="font-semibold">Product Name : </span> {productName}
-            </p>
-            <p>
-              <span className="font-semibold">Product Brand : </span> {productBrand}
-            </p>
-            <p>
-              <span className="font-semibold">Description : </span> {queryTitle}
-            </p>
-            <p>
-              <span className="font-semibold">Boycott Reason : </span> {boycottingReasonDetails}
-            </p>
-            <p>
-              <span className="font-semibold">Posted Time : </span> {currentDateTime}
-            </p>
-            <p>
-              <span className="font-semibold">Posted By : </span> {userName}
-            </p>
-            <p>
-              <span className="font-semibold">Email : </span> {userEmail}
-            </p>
+        <div className="flex items-end">
+            <div className="space-y-2">
+                <p>
+                  <span className="font-semibold">Product Name : </span> {productName}
+                </p>
+                <p>
+                  <span className="font-semibold">Product Brand : </span> {productBrand}
+                </p>
+                <p>
+                  <span className="font-semibold">Description : </span> {queryTitle}
+                </p>
+                <p>
+                  <span className="font-semibold">Boycott Reason : </span> {boycottingReasonDetails}
+                </p>
+                <p>
+                  <span className="font-semibold">Posted Time : </span> {currentDateTime}
+                </p>
+                <p>
+                  <span className="font-semibold">Posted By : </span> {userName}
+                </p>
+                <p>
+                  <span className="font-semibold">Email : </span> {userEmail}
+                </p>
+            </div>
+                <button className="btn btn-outline btn-secondary text-base" onClick={()=>document.getElementById('my_modal_3').showModal()}>Add Recommendation</button>
         </div>
       </section>
-
       
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="ring ring-red-500 text-red-500 btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
 
-      {/* Add A Recommendation */}
-      <section className="my-20 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-4">Add A Recommendation</h2>
-        <form onSubmit={handleAddRecommendation} className="space-y-4">
-          <div>
-            <label
-              className="block font-semibold mb-2"
-              htmlFor="recommendation-title"
-            >
-              Recommendation Title <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              id="recommendation-title"
-              name="recommendationTitle"
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label
-              className="block font-semibold mb-2"
-              htmlFor="recommended-product-name"
-            >
-              Recommended Product Name <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              id="recommended-product-name"
-              name="recommendedProductName"
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label
-              className="block font-semibold mb-2"
-              htmlFor="recommended-image-url"
-            >
-              Recommended Product Image URL <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="url"
-              id="recommended-image-url"
-              name="recommendedImageUrl"
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label
-              className="block font-semibold mb-2"
-              htmlFor="recommendation-reason"
-            >
-              Recommendation Reason <span className="text-red-600">*</span>
-            </label>
-            <textarea
-              id="recommendation-reason"
-              name="recommendationReason"
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600"
-          >
-            Add Recommendation
-          </button>
-        </form>
+          {/* Add A Recommendation */}
+        <section className="py-6 max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-4">Add A Recommendation</h2>
+          <form onSubmit={handleAddRecommendation} className="space-y-4">
+            <div>
+              <label
+                className="block font-semibold mb-2"
+                htmlFor="recommendation-title"
+              >
+                Recommendation Title <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="recommendation-title"
+                name="recommendationTitle"
+                required
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label
+                className="block font-semibold mb-2"
+                htmlFor="recommended-product-name"
+              >
+                Recommended Product Name <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="recommended-product-name"
+                name="recommendedProductName"
+                required
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label
+                className="block font-semibold mb-2"
+                htmlFor="recommended-image-url"
+              >
+                Recommended Product Image URL <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="url"
+                id="recommended-image-url"
+                name="recommendedImageUrl"
+                required
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label
+                className="block font-semibold mb-2"
+                htmlFor="recommendation-reason"
+              >
+                Recommendation Reason <span className="text-red-600">*</span>
+              </label>
+              <textarea
+                id="recommendation-reason"
+                name="recommendationReason"
+                required
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+            </div>
+            <div className="text-center">
+              <button
+                type="submit"
+                className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600"
+              >
+                Add Recommendation
+              </button>
+            </div>
+          </form>
+        </section>
+
+        </div>
+      </dialog>
+
+
+      {/* Show Recommendations */}
+      <section className="my-20">
+        <h1 className="text-3xl text-center font-bold my-10">Recommendation For This Product</h1>
+
       </section>
 
       {/* All Recommendations */}
