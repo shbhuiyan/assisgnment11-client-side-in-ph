@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import Swal from "sweetalert2";
+import RecommendationCard from "../Components/cards/RecommendationCard";
 
 const QueryDetails = () => {
+  const [recommendations , setRecommendations] = useState([])
+
   const { user } = useContext(AuthContext);
   const queryDetails = useLoaderData()
 
   const {productName , productBrand , productImageUrl , queryTitle , boycottingReasonDetails , userEmail , userName , currentDateTime , _id} = queryDetails[0]
 
+  // add recommendations
   const handleAddRecommendation = e => {
     e.preventDefault()
 
@@ -47,6 +51,15 @@ const QueryDetails = () => {
     modal.close();
 
   }
+
+
+  // get recommendation api with useEffect
+  useEffect(() => {
+    axios.get(`http://localhost:5000/recommendations/${_id}`)
+    .then(res => {
+      setRecommendations(res.data);
+    })
+  },[_id])
 
   return (
     <div>
@@ -175,7 +188,11 @@ const QueryDetails = () => {
       {/* Show Recommendations */}
       <section className="my-20">
         <h1 className="text-3xl text-center font-bold my-10">Recommendation For This Product</h1>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {
+            recommendations.map(recommend => <RecommendationCard key={recommend._id} recommend={recommend} /> )
+          }
+        </div>
       </section>
 
       {/* All Recommendations */}
