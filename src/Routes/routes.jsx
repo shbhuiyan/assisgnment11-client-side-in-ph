@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <RecentQueries/>,
+            element: <RecentQueries />,
           },
         ],
       },
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
         element: <Queries />,
       },
       {
-        path:'/recommendsForMe',
-        element:<RecommendationForMe />
+        path: "/recommendsForMe",
+        element: <RecommendationForMe />,
       },
       {
         path: "/update/:id",
@@ -45,7 +45,10 @@ const router = createBrowserRouter([
             <UpdateQueries />
           </PrivateRoute>
         ),
-        loader:({params}) => fetch(`http://localhost:5000/single-queries/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://b10-a11-server-side-shbhuiyan-main.vercel.app/single-queries/${params.id}`
+          ),
       },
       {
         path: "/myQueries",
@@ -62,7 +65,10 @@ const router = createBrowserRouter([
             <QueryDetails />
           </PrivateRoute>
         ),
-        loader:({params}) => fetch(`http://localhost:5000/single-queries/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://b10-a11-server-side-shbhuiyan-main.vercel.app/single-queries/${params.id}`
+          ),
       },
       {
         path: "/recommendations",
