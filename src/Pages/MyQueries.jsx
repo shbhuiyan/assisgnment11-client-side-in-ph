@@ -3,15 +3,16 @@ import animationForBanner from "../../public/Animation - 1734968125018.json";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import axios from "axios";
 import MyQueryCard from "../Components/cards/MyQueryCard";
 import NoData from "../Components/NoData";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 
 
 const MyQueries = () => {
   const [queries , setQueries] = useState([])
   const {user} = useContext(AuthContext)
+  const axiosSecure = useAxiosSecure()
 
   const handleDeleteQuery = id => {
     Swal.fire({
@@ -24,7 +25,7 @@ const MyQueries = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(result => {
       if(result.isConfirmed){
-        axios.delete(`http://localhost:5000/queries/delete/${id}`)
+        axiosSecure.delete(`/queries/delete/${id}`)
         .then(res => {
           if (res.data.deletedCount > 0) {
             Swal.fire({
@@ -40,11 +41,11 @@ const MyQueries = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/user-queries/${user?.email}`)
+    axiosSecure.get(`/user-queries/${user?.email}`)
     .then(res => {
       setQueries(res.data)
     })
-  },[user?.email])
+  },[axiosSecure, user?.email])
 
   return (
     <div className="space-y-20">

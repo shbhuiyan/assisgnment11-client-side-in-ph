@@ -1,19 +1,20 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import NoRecommendFound from "../Components/NoRecommendFound";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 
 const MyRecommend = () => {
     const [recommends , setRecommends] = useState([])
+    const axiosSecure = useAxiosSecure()
 
     const {user} = useContext(AuthContext)
     useEffect(() => {
-        axios.get(`http://localhost:5000/recommendations-by-user/${user?.email}`)
+        axiosSecure.get(`/recommendations-by-user/${user?.email}`)
         .then(res => {
             setRecommends(res.data);
         })
-    },[user?.email])
+    },[axiosSecure, user?.email])
 
     // Delete Recommendations...
     const handleDeleteRecommends = id => {
@@ -28,7 +29,7 @@ const MyRecommend = () => {
             confirmButtonText: "Yes, delete it!",
           }).then(result => {
             if(result.isConfirmed){
-              axios.delete(`http://localhost:5000/recommendations/delete/${id}`)
+              axiosSecure.delete(`/recommendations/delete/${id}`)
               .then(res => {
                 if (res.data.deletedCount > 0) {
                   Swal.fire({

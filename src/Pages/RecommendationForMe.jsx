@@ -1,24 +1,25 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import NoRecommendFound from "../Components/NoRecommendFound";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 
 
 const RecommendationForMe = () => {
     const [recommendations , setRecommendations] = useState([])
     const {user} = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
     
     useEffect(() => {
-        axios.get(`http://localhost:5000/recommendations-by/${user?.email}`)
+        axiosSecure.get(`/recommendations-for-me/${user?.email}`)
         .then(res => {
             setRecommendations(res.data);
         })
-    },[user?.email])
+    },[axiosSecure, user?.email])
 
     return (
         <div className="overflow-x-auto my-10">
-            <h1 className="text-3xl text-center font-bold mb-8">My All Recommendations {recommendations.length}</h1>
+            <h1 className="text-3xl text-center font-bold mb-8">Recommendations For Me</h1>
           {
             recommendations.length ? 
                 <table className="table border-y">

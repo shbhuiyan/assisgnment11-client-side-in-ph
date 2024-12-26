@@ -10,7 +10,7 @@ import NoRecommendFound from "../Components/NoRecommendFound";
 
 const QueryDetails = () => {
   const [recommendations , setRecommendations] = useState([])
-
+  
   const { user } = useContext(AuthContext);
   const queryDetails = useLoaderData()
 
