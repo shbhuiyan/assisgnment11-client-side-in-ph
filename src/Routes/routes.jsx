@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
 import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
-import Add from "../Pages/ForMe";
 import Signin from "../Pages/Auth/Signin";
 import Register from "../Pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
@@ -13,6 +12,7 @@ import Queries from "../Pages/Queries";
 import RecentQueries from "../Components/RecentQueries";
 import AddQueries from "../Pages/AddQueries";
 import MyRecommend from "../Pages/MyRecommend";
+import RecommendationForMe from "../Pages/RecommendationForMe";
 
 const router = createBrowserRouter([
   {
@@ -35,12 +35,8 @@ const router = createBrowserRouter([
         element: <Queries />,
       },
       {
-        path: "/forMe",
-        element: (
-          <PrivateRoute>
-            <Add />
-          </PrivateRoute>
-        ),
+        path:'/recommendsForMe',
+        element:<RecommendationForMe />
       },
       {
         path: "/update/:id",

@@ -19,7 +19,18 @@ const Queries = () => {
       <div className="my-10 text-center space-y-4">
       <h1 className="text-4xl font-bold">Explore User Queries</h1>
       <p className="font-medium">Discover what others are asking and join the discussion.</p>
-      <button onClick={()=>setChangeLayout(!changeLayout)} className="btn btn-outline btn-neutral">Change Layout</button>
+      <div className="flex justify-between gap-5">
+      {/* <form className="flex" onSubmit={handleSearch}>
+      <input
+        type="text"
+        name="search"
+        // value={search}
+        placeholder="Search here ..."
+        className="border-2 p-3 rounded-s-lg w-full outline-none max-w-xs" />
+      <button className="p-3 border-2 border-rose-500 px-5 font-bold hover:bg-rose-400 bg-rose-500 rounded-e-lg" type="submit">Search</button>
+    </form> */}
+      <button onClick={()=>setChangeLayout(!changeLayout)} className="btn btn-outline btn-neutral max-lg:hidden">Change Layout</button>
+      </div>
       </div>
       <div className={`${changeLayout ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 my-20" : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 my-20"}`}>
         {

@@ -15,6 +15,7 @@ const MyRecommend = () => {
         })
     },[user?.email])
 
+    // Delete Recommendations...
     const handleDeleteRecommends = id => {
 
         Swal.fire({

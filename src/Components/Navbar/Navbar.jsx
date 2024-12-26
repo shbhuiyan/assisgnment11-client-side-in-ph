@@ -32,7 +32,7 @@ const Navbar = () => {
             <NavLink to={"/queries"}>Queries</NavLink>
           </li>
           <li>
-            <NavLink to={"/forMe"}>Recommendation For Me </NavLink>
+            <NavLink to={"/recommendsForMe"}>Recommendation For Me </NavLink>
           </li>
           <li>
             <NavLink to={"/myQueries"}>My Queries</NavLink>

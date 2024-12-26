@@ -39,12 +39,18 @@ const QueryDetails = () => {
     axios.post('http://localhost:5000/recommendations' , recommendation)
     .then(res => {
       if(res.data.insertedId){
-                    Swal.fire({
-                      title: "Successfully Added Your Recommendation!",
-                      icon: "success",
-                      // draggable: true
-                    });
-                  }
+              Swal.fire({
+                title: "Successfully Added Your Recommendation!",
+                icon: "success",
+                // draggable: true
+              });
+            }
+
+        // after recommendation load data
+          axios.get(`http://localhost:5000/recommendations/${_id}`)
+          .then(res => {
+            setRecommendations(res.data);
+          })
     })
 
     e.target.reset();
@@ -68,11 +74,11 @@ const QueryDetails = () => {
       {/* Query Details */}
         <h1 className="text-4xl text-center font-bold my-6">Query Details</h1>
         {/* details section */}
-      <section className="max-w-4xl mx-auto p-6 bg-white shadow-md my-8 rounded-lg border flex max-md:flex-col gap-10 items-center">
+      <section className="max-md:mx-4 max-w-4xl mx-auto p-6 bg-white shadow-md my-8 rounded-lg border flex max-md:flex-col gap-10 items-center">
         <div className="rounded-lg">
             <img className="w-48 rounded-lg" src={productImageUrl} alt={productName} />
         </div>
-        <div className="flex items-end">
+        <div className="flex max-md:flex-col items-end gap-10 lg:gap-40">
             <div className="space-y-2">
                 <p>
                   <span className="font-semibold">Product Name : </span> {productName}
@@ -201,57 +207,6 @@ const QueryDetails = () => {
               <NoRecommendFound />
         }
       </section>
-
-      {/* All Recommendations */}
-      {/* <section className="mb-8">
-        <h2 className="text-xl font-bold mb-4">All Recommendations</h2>
-        <div className="space-y-4">
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <h3 className="font-semibold text-lg">Best Performance Laptop</h3>
-            <p>
-              <span className="font-semibold">Product Name:</span> ASUS ROG
-              Zephyrus G14
-            </p>
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Recommended Product"
-              className="my-2 w-32 h-32 object-cover rounded-lg"
-            />
-            <p>
-              <span className="font-semibold">Reason:</span> This laptop offers
-              the best performance for gaming within the budget.
-            </p>
-            <p>
-              <span className="font-semibold">Recommended By:</span> Alice Smith
-            </p>
-            <p>
-              <span className="font-semibold">Date:</span> 2024-12-24
-            </p>
-          </div>
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <h3 className="font-semibold text-lg">Value for Money</h3>
-            <p>
-              <span className="font-semibold">Product Name:</span> Acer Nitro 5
-            </p>
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Recommended Product"
-              className="my-2 w-32 h-32 object-cover rounded-lg"
-            />
-            <p>
-              <span className="font-semibold">Reason:</span> Affordable and
-              efficient for mid-range gaming.
-            </p>
-            <p>
-              <span className="font-semibold">Recommended By:</span> Bob
-              Johnson
-            </p>
-            <p>
-              <span className="font-semibold">Date:</span> 2024-12-23
-            </p>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 };
