@@ -25,6 +25,7 @@ const QueryDetails = () => {
     userName,
     currentDateTime,
     _id,
+    recommendationCount,
   } = queryDetails[0];
 
   // add recommendations
@@ -84,7 +85,8 @@ const QueryDetails = () => {
       });
 
     // add increment recommendations
-    axiosSecure.patch(`/single-queries/${_id}`)
+    const count = parseInt(recommendationCount) + 1;
+    axiosSecure.put(`/single-query/${_id}` , count)
     .then(res => console.log(res.data))
 
     e.target.reset();
