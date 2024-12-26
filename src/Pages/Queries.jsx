@@ -20,7 +20,7 @@ const Queries = () => {
           Discover what others are asking and join the discussion.
         </p>
         <div className="flex justify-between gap-5">
-          {/* <form className="flex" onSubmit={handleSearch}>
+          <form className="flex">
       <input
         type="text"
         name="search"
@@ -28,7 +28,7 @@ const Queries = () => {
         placeholder="Search here ..."
         className="border-2 p-3 rounded-s-lg w-full outline-none max-w-xs" />
       <button className="p-3 border-2 border-rose-500 px-5 font-bold hover:bg-rose-400 bg-rose-500 rounded-e-lg" type="submit">Search</button>
-    </form> */}
+    </form>
           <button
             onClick={() => setChangeLayout(!changeLayout)}
             className="btn btn-outline btn-neutral max-lg:hidden"

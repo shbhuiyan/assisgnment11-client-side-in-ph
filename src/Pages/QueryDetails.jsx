@@ -6,10 +6,12 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import RecommendationCard from "../Components/cards/RecommendationCard";
 import NoRecommendFound from "../Components/NoRecommendFound";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 
 const QueryDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
 
+  const axiosSecure = useAxiosSecure()
   const { user } = useContext(AuthContext);
   const queryDetails = useLoaderData();
 
@@ -58,8 +60,7 @@ const QueryDetails = () => {
       currentDateTime,
     };
 
-    axios
-      .post(
+    axiosSecure.post(
         "https://b10-a11-server-side-shbhuiyan-main.vercel.app/recommendations",
         recommendation
       )
@@ -68,7 +69,7 @@ const QueryDetails = () => {
           Swal.fire({
             title: "Successfully Added Your Recommendation!",
             icon: "success",
-            // draggable: true
+            draggable: true
           });
         }
 
@@ -81,6 +82,10 @@ const QueryDetails = () => {
             setRecommendations(res.data);
           });
       });
+
+    // add increment recommendations
+    axiosSecure.patch(`/single-queries/${_id}`)
+    .then(res => console.log(res.data))
 
     e.target.reset();
     // after submitting modal close

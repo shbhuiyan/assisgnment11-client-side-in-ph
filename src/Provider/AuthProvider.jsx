@@ -60,10 +60,12 @@ const AuthProvider = ({ children }) => {
           .post(
             "https://b10-a11-server-side-shbhuiyan-main.vercel.app/jwt",
             userJWT,
-            { withCredentials: true }
+            {
+              withCredentials: true,
+            }
           )
           .then((res) => {
-            res.data;
+            console.log(res.data);;
             setLoading(false);
           });
       } else {
