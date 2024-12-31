@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const axiosInstance = axios.create({
-  baseURL: "https://b10-a11-server-side-shbhuiyan-main.vercel.app",
+  baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 

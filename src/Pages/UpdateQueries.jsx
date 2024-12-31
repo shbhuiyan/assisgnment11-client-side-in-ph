@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import moment from "moment";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 
 const UpdateQueries = () => {
   const singleQueries = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const {
     productName,
@@ -57,7 +58,7 @@ const UpdateQueries = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        axios
+        axiosSecure
           .put(
             `https://b10-a11-server-side-shbhuiyan-main.vercel.app/single-queries/${_id}`,
             updateQueries

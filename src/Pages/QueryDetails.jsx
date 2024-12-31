@@ -11,7 +11,7 @@ import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 const QueryDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
 
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const queryDetails = useLoaderData();
 
@@ -25,7 +25,6 @@ const QueryDetails = () => {
     userName,
     currentDateTime,
     _id,
-    recommendationCount,
   } = queryDetails[0];
 
   // add recommendations
@@ -61,16 +60,17 @@ const QueryDetails = () => {
       currentDateTime,
     };
 
-    axiosSecure.post(
+    axiosSecure
+      .post(
         "https://b10-a11-server-side-shbhuiyan-main.vercel.app/recommendations",
         recommendation
       )
       .then((res) => {
-        if (res.data.insertedId) {
+        if (res.data.recommendationResult.insertedId) {
           Swal.fire({
             title: "Successfully Added Your Recommendation!",
             icon: "success",
-            draggable: true
+            draggable: true,
           });
         }
 
@@ -83,11 +83,6 @@ const QueryDetails = () => {
             setRecommendations(res.data);
           });
       });
-
-    // add increment recommendations
-    const count = parseInt(recommendationCount) + 1;
-    axiosSecure.put(`/single-query/${_id}` , count)
-    .then(res => console.log(res.data))
 
     e.target.reset();
     // after submitting modal close

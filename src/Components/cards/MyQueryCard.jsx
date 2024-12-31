@@ -21,7 +21,7 @@ const MyQueryCard = ( {query , handleDeleteQuery} ) => {
           <div className="card-body">
             <h2 className="card-title">Name : {productName}</h2>
             <p className="text-lg text-red-500 font-medium">{queryTitle}</p>
-            <p className="text-xl font-medium">Recommends : {recommendationCount}</p>
+            <p className="font-medium text-sm text-green-500">Recommends Count : {recommendationCount}</p>
             <p className="text-lg font-medium">Posted Time : {currentDateTime}</p>
             <div className="card-actions justify-between">
               <Link to={`/details/${_id}`} className="btn btn-outline btn-accent">View Details</Link>
