@@ -46,8 +46,8 @@ const Queries = () => {
       <div
         className={`${
           changeLayout
-            ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 my-20"
-            : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 my-20"
+            ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 my-20"
+            : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 my-20"
         }`}
       >
         {queries.map((query) => (

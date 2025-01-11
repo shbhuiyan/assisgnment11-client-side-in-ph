@@ -1,16 +1,13 @@
-import { useContext } from "react";
 import { FaGithub, FaLinkedin, FaSquareFacebook, FaXTwitter } from "react-icons/fa6";
-import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/ask-me.png"
 
 const Footer = () => {
 
-  const {darkTheme} = useContext(AuthContext)
 
     return (
         <footer> 
-            <div className={`${darkTheme ? "dark-theme flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 rounded-lg" : "flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg"}`}>
+            <div className="flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg">
             <Link  to={"/"}>
           <img className="w-12 md:w-16" src={logo} alt="" />
         </Link>

@@ -61,9 +61,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: (
-          <PrivateRoute>
             <QueryDetails />
-          </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(
